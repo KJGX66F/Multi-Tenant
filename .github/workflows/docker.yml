@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: # 支持手动点击按钮触发构建
+  workflow_dispatch:
 
 jobs:
   build-and-push:
@@ -13,7 +13,7 @@ jobs:
       packages: write
 
     steps:
-      - name: 检出仓库代码
+      - name: 检出代码
         uses: actions/checkout@v4
 
       - name: 登录 GitHub 镜像仓库 (GHCR)
@@ -28,5 +28,5 @@ jobs:
         with:
           context: .
           push: true
-          # 镜像名称必须全小写
-          tags: ghcr.io/${{ github.repository_owner }}/multi-tenant:latest
+          # 必须全部使用小写英文字母
+          tags: ghcr.io/kjgx66f/multi-tenant:latest
