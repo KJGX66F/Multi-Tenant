@@ -1,0 +1,11 @@
+:3000 {
+    # 根路径访问直接展示伪装网站
+    root * /var/www/html
+    file_server
+
+    # 匹配 WebSocket 协议路径并反代给本地 Sing-box
+    @vless_ws {
+        path /api/v1/stream
+    }
+    reverse_proxy @vless_ws 127.0.0.1:10000
+}
